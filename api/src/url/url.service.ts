@@ -125,7 +125,7 @@ export class UrlService {
       await urlObject.save();
 
       // Redirect to the original url
-      return { statusCode: HttpStatus.FOUND, url: urlObject.url };
+      return { statusCode: HttpStatus.MOVED_PERMANENTLY, url: urlObject.url };
     } else {
       // Redirect to the app error page
       return { statusCode: HttpStatus.FOUND, url: linkNotFound };
