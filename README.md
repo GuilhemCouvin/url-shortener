@@ -82,7 +82,7 @@ You can run the application using Docker Compose:
 2. Start the Docker containers using Docker Compose:
 
     ```bash
-    docker-compose up
+    docker compose up
     ```
 
 This command will start both the APP (React TypeScript) and API (NestJS) applications in development mode.
