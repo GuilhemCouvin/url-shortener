@@ -1,0 +1,19 @@
+.url-input__container {
+	width: 100%;
+	display: flex;
+
+	justify-content: center;
+	align-items: center;
+
+	margin-bottom: 24px;
+
+	.url-input__text {
+		padding: 10px;
+		border-radius: 30px;
+		box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+		.ant-form-item-explain-error {
+			font-size: 10px !important;
+		}
+	}
+}
