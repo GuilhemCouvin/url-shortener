@@ -22,6 +22,7 @@ export const UrlInput = (props: UrlInputProps) => {
 	const [form] = useForm();
 	const [checkCopy, setCheckCopy] = useState(false);
 	const [expireAt, setExpireAt] = useState<Date>();
+	const [submittable, setSubmittable] = useState<boolean>(false);
 
 	const onFinish = (values: any) => {
 		shortenUrl(values.url);
@@ -47,6 +48,17 @@ export const UrlInput = (props: UrlInputProps) => {
 		setExpireAt(expireAt.toDate());
 	};
 
+	const validateUrl = (_: any, value: string) => {
+		const regex =
+			/((http(s)?:\/\/)?(www\.)?[a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/;
+		if (value && !regex.test(value)) {
+			setSubmittable(false);
+			return Promise.reject("Invalid URL");
+		}
+		setSubmittable(true);
+		return Promise.resolve();
+	};
+
 	return (
 		<Space
 			direction="vertical"
@@ -54,13 +66,14 @@ export const UrlInput = (props: UrlInputProps) => {
 			size={"large"}
 		>
 			<Space className="url-input__text">
-				<Form form={form} onFinish={onFinish}>
+				<Form name="url-input" form={form} onFinish={onFinish}>
 					<Form.Item
 						name="url"
 						style={{
 							marginBottom: "0px",
 						}}
 						rules={[
+							{ validator: validateUrl },
 							{
 								required: true,
 								message: "Please input your URL!",
@@ -84,6 +97,7 @@ export const UrlInput = (props: UrlInputProps) => {
 				/>
 
 				<Button
+					disabled={!submittable}
 					className="primary-btn"
 					type="primary"
 					onClick={() => form.submit()}
