@@ -111,4 +111,4 @@ Replace `3000` with the appropriate port number if you have configured a differe
 
 Replace `4000` with the appropriate port number if you have configured a different port for the backend API.
 
-Replace `mongodb://database:27017/url-shortener` inside the `docker-compose.yml` and `api/.env` files if you have configured a different URI for the database.
+Replace `mongodb://database:27017/url-shortener` inside the `api/.env` file if you have configured a different URI for the database.
